@@ -1,3 +1,7 @@
+class Tabs {
+
+}
+
 
 class TabLink {
   constructor(element) {
@@ -6,7 +10,14 @@ class TabLink {
     this.itemElement = document.querySelector(`.tabs-item[data-tab="${this.data}"]`);
     this.tabItem = new TabItem(this.itemElement);
     
-    this.element.addEventListener('click', () => this.select());
+    this.element.addEventListener('click', () => {
+      if (this.element.classList.contains("tabs-link-selected")) {
+        this.deselect()
+      } else {
+        this.select();
+      }
+    });
+    
   };
 
   select() {
@@ -16,6 +27,12 @@ class TabLink {
     this.element.classList.add('tabs-link-selected');
     
     this.tabItem.select();
+  }
+
+  deselect() {
+    this.element.classList.remove('tabs-link-selected');
+    
+    this.tabItem.deselect();
   }
 }
 
@@ -29,6 +46,10 @@ class TabItem {
 
     items.forEach(item => item.classList.remove('tabs-item-selected'));
     this.element.classList.add('tabs-item-selected');
+  }
+
+  deselect() {
+    this.element.classList.remove('tabs-item-selected');
   }
 }
 
