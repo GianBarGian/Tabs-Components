@@ -1,7 +1,3 @@
-class Tabs {
-
-}
-
 
 class TabLink {
   constructor(element) {
@@ -17,7 +13,6 @@ class TabLink {
         this.select();
       }
     });
-    
   };
 
   select() {
